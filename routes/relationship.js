@@ -20,8 +20,8 @@ router.post('/', async (req, res) => {
   const { follower, followee } = req.body
 
   const data = {
-    follower: Call(Fn('getUser'), follower),
-    followee: Call(Fn('getUser'), followee),
+    follower: Call(Fn('getUserRef'), follower),
+    followee: Call(Fn('getUserRef'), followee),
   }
 
   const doc = await client

@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
   const { name, text } = req.body
 
   const data = {
-    user: Call(Fn('getUser'), name),
+    user: Call(Fn('getUserRef'), name),
     text,
   }
 

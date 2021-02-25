@@ -19,7 +19,9 @@ const {
 router.get('/:name/tweets', async (req, res) => {
   const { name } = req.params
   const docs = await client
-    .query(Paginate(Match(Index('tweets_by_user'), Call(Fn('getUser'), name))))
+    .query(
+      Paginate(Match(Index('tweets_by_user'), Call(Fn('getUserRef'), name)))
+    )
     .catch(e => res.send(e))
 
   res.send(docs)
@@ -32,7 +34,10 @@ router.get('/:follower/feeds', async (req, res) => {
     .query(
       Paginate(
         Join(
-          Match(Index('followees_by_follower'), Call(Fn('getUser'), follower)),
+          Match(
+            Index('followees_by_follower'),
+            Call(Fn('getUserRef'), follower)
+          ),
           Index('tweets_by_user')
         )
       )
