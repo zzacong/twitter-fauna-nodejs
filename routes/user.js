@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const faunadb = require('faunadb')
-const client = require('../fauna/fauna')
+const client = require('../fauna')
 
 const {
   Ref,

@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const faunadb = require('faunadb')
-const client = require('../fauna/fauna')
+const client = require('../fauna')
 
 const {
   Ref,
@@ -26,10 +26,10 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { name, text } = req.body
+  const { username, text } = req.body
 
   const data = {
-    user: Call(Fn('getUserRef'), name),
+    user: Call(Fn('getUserRef'), username),
     text,
   }
 
